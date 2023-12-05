@@ -10,7 +10,9 @@ public class Projectile : MonoBehaviour
     {
         // Launch the projectile forward
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
+        //rotate the object 90 in the x axis so it faces the right way
+        transform.Rotate(270f, 0, 0);
+        rb.velocity = transform.up * -speed;
 
         // Destroy the projectile after the specified lifetime
         Destroy(gameObject, lifetime);
