@@ -1,9 +1,0 @@
-# ninja log v5
-11	1549	7228019282498532	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b9b666dc88507b5a
-45	1567	7228019282642543	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	8b691a34d23214c8
-53	1616	7228019283217552	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e4029f74f0264ea6
-29	1629	7228019283357300	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8c181e5d1260520d
-17	1686	7228019283967224	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3162bf32eda99f79
-36	1789	7228019284911316	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c8d0376fa112559a
-0	1855	7228019285669868	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	fe956946b8ffca72
-1856	2091	7228019287491067	D:/GitKraken/ARbulletHellPirates/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/6m4u5b71/obj/armeabi-v7a/libgame.so	d0f835d471d69f87

@@ -11,12 +11,17 @@ public class SineWaveMovement : MonoBehaviour
     private float timeOffset = 0f;   // Time offset to start the movement
     private float initialY;         // Initial Y position of the object
 
+    private Transform parentTransform; // Reference to the parent's transform
+
     void Start()
     {
         timeOffset = Random.Range(0f, 5f);  // Randomize the time offset
 
         startTime = Time.time + timeOffset;  // Record the starting time
-        initialY = transform.position.y;  // Record the initial Y position
+        initialY = transform.localPosition.y;  // Record the initial local Y position
+
+        // Get the parent's transform
+        parentTransform = transform.parent;
     }
 
     void Update()
@@ -24,13 +29,18 @@ public class SineWaveMovement : MonoBehaviour
         // Calculate the Y position using a sine wave equation, with the center at initialY
         float yPos = Mathf.Sin((Time.time - startTime) * frequency) * amplitude + initialY;
 
-        // Update the object's position
-        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+        // Update the object's local position relative to the parent
+        transform.localPosition = new Vector3(transform.localPosition.x, yPos, transform.localPosition.z);
 
-        // Calculate rotation based on the sine wave value
+        // Calculate rotation based on the parent's rotation and sine wave value
         float rotationValue = Mathf.Sin((Time.time - startTime) * frequency) * rotationAmount;
 
-        // Apply rotation to the object
-        transform.rotation = Quaternion.Euler(new Vector3(rotationValue, 0f, 0f));
+        // Apply rotation to the object using parent's rotation
+        Quaternion parentRotation = parentTransform.rotation;
+        Quaternion localRotation = Quaternion.Euler(rotationValue, 0f, 0f);
+        Quaternion finalRotation = parentRotation * localRotation;
+
+        // Apply the final rotation to the object
+        transform.rotation = finalRotation;
     }
 }

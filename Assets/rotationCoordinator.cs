@@ -10,27 +10,40 @@ public class RotationCoordinator : MonoBehaviour
     private float rotationProgress = 0f;
     private Quaternion startRotation;
     private Quaternion targetRotation;
+    public GameObject objectToRotate; // GameObject to be rotated
 
-    private void Start()
+    /*private void Start()
     {
-        // Store the initial rotation of the object
-        startRotation = transform.rotation;
+    Button rotateCWButton = GameObject.Find("RotateCWButton").GetComponent<Button>();
+    rotateCWButton.onClick.AddListener(() => RotateCW(objectToRotate));
 
-        // Find the button by its name (change "YourButtonName" to the actual name of your button)
-        Button rotateButton = GameObject.Find("YourButtonName").GetComponent<Button>();
+    Button rotateCCWButton = GameObject.Find("RotateCCWButton").GetComponent<Button>();
+    rotateCCWButton.onClick.AddListener(() => RotateCCW(objectToRotate));
+    }*/
 
-        // Add a listener to the button click
-        rotateButton.onClick.AddListener(RotateObject);
-    }
 
-    private void RotateObject()
+    // Method to rotate the specified object clockwise
+    public void RotateCW()
     {
         if (!isRotating)
         {
             // Start the rotation
             isRotating = true;
-            startRotation = transform.rotation; // Update the start rotation to the current rotation
+            startRotation = objectToRotate.transform.rotation; // Update the start rotation to the current rotation of the specified object
             targetRotation = startRotation * Quaternion.Euler(0f, 90f, 0f); // Rotate 90 degrees on the Y-axis
+            rotationProgress = 0f; // Reset the rotation progress
+        }
+    }
+
+    // Method to rotate the specified object counter-clockwise
+    public void RotateCCW()
+    {
+        if (!isRotating)
+        {
+            // Start the rotation
+            isRotating = true;
+            startRotation = objectToRotate.transform.rotation; // Update the start rotation to the current rotation of the specified object
+            targetRotation = startRotation * Quaternion.Euler(0f, 90f, 0f); // Rotate -90 degrees on the Y-axis
             rotationProgress = 0f; // Reset the rotation progress
         }
     }
@@ -44,7 +57,7 @@ public class RotationCoordinator : MonoBehaviour
             rotationProgress = Mathf.Clamp01(rotationProgress);
 
             // Update the object's rotation using Lerp
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotationProgress);
+            objectToRotate.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotationProgress);
 
             // Check if the rotation is complete
             if (rotationProgress >= 1f)
